@@ -1,0 +1,795 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinang Penarakan Mansion</title>
+</head>
+<style>
+    .z_i_n_o {
+  animation: zoom-in-zoom-out 3s ease;
+}
+@keyframes zoom-in-zoom-out {
+  0% {
+    scale: 50%;
+  }
+  50% {
+    scale: 100%;
+  }
+}
+
+.map{
+    width:35%;
+     height:50%;
+    margin-left: 5%; 
+    border-radius: 5% 5% 5% 5%;
+}
+
+    .container{
+      background-color: #333;
+  padding: 2% 3%;
+  color: aliceblue;
+  line-height: 200%; 
+  height: 30%;
+  margin: 1%;
+  border-radius: 12px;
+}
+.container1{
+    float: left;
+  color: aliceblue;
+  line-height: 200%; 
+}
+.container2{
+    float: right;
+  color: aliceblue;
+  line-height: 200%; 
+  cursor: pointer;
+}.container3{
+    float: right;
+  color: aliceblue;
+  line-height: 200%; 
+}
+            :root {
+            --primary-color: #2A3990;
+            --accent-color: #F49F1C;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            overflow-x: hidden;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            max-width: 70%;
+            margin: 20%;
+        }
+
+        .portfolio-container {
+            display: flex;
+            flex-direction: column;
+            height: 50%;
+            overflow: hidden;
+            position: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 25px 25px 25px 25px;
+            width: 50%;
+            float: left;
+            margin-top: 5%;
+            margin-left :9%;
+        }
+
+        .slideshow {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .slide-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.9);
+            transform: scale(1.05);
+            transition: transform 8s ease-out;
+        }
+
+        .slide.active .slide-img {
+            transform: scale(1);
+        }
+
+        .slide-content {
+            padding: 1rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: var(--transition);
+            transition-delay: 0.3s;
+            font-size: 2%;
+        }
+
+        .slide.active .slide-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .thumbnails {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1.2rem;
+            background-color: white;
+            height: 15%;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .thumbnails::-webkit-scrollbar {
+            display: none;
+        }
+
+        .thumbnail {
+            position: relative;
+            width: 120px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: var(--transition);
+            transform: scale(0.9);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .thumbnail:hover {
+            transform: scale(0.95) translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .thumbnail.active {
+            transform: scale(1);
+            border: 3px solid var(--accent-color);
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .thumbnail:hover img {
+            filter: brightness(1.1);
+        }
+
+        .thumbnail::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 20%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .thumbnail:hover::after {
+            opacity: 1;
+        }
+
+        .controls {
+            position: absolute;
+            top: 50%;
+            width: 96%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            pointer-events: auto;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: scale(1.1);
+        }
+
+
+        @keyframes pulse {
+            0% {
+                transform: rotate(-3deg) scale(1);
+            }
+            50% {
+                transform: rotate(-3deg) scale(1.05);
+            }
+            100% {
+                transform: rotate(-3deg) scale(1);
+            }
+        }
+
+        .loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(42, 57, 144, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+ul {
+  display: flex;
+  justify-content: flex-end; 
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+}
+
+li {
+  float: none;
+  margin-left: 20px;
+  position: relative;
+}
+
+li a, .dropbtn {
+  color: white;
+  text-decoration: none;
+  padding: 14px 16px;
+  display: block;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  right: 0;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+    body{
+        background-color: white;
+font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+    }
+.bgimage {
+  width: 98vmax;
+  height: 40vmax;
+  position: relative;
+  animation: mymove 4s;
+  animation-fill-mode: forwards;
+  border: none;
+  float: left;
+  z-index: -1;
+}
+
+.text-container {
+            width:40%;
+            text-align: justify;
+            background: linear-gradient(135deg, #ede7de 0%, #e9e2d7 100%);
+            opacity: 80%;
+            border-radius: 16px;
+            color: rgb(0, 0, 0);
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+            font-size: 1.5vmax; 
+            line-height: 200%; 
+            font-weight: 400;
+            float: right;
+            padding: 2%;
+            font-family: Arial, Helvetica, sans-serif;
+            position: absolute;
+            margin-right: 7%;
+            margin-left: 3%;
+          }
+.text-container1 {
+            width:81%;
+            text-align: justify;
+            background: linear-gradient(135deg, #ede7de 0%, #e9e2d7 100%);
+            opacity: 80%;
+            border-radius: 16px;
+            color: rgb(0, 0, 0);
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+            font-size: 1vmax; 
+            line-height: 200%; 
+            font-weight: 400;
+            padding: 2%;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-left: 8%;
+}
+
+.margin{
+  margin-right: 10%;
+}
+.z_i_n_o {
+  animation: zoom-in-zoom-out 5s ease;
+  margin-top: 4.5%;
+}
+.text_desc {
+  animation: zoom-in-zoom-out 5s ease;
+  margin-top: 10%;
+}.text_desc1 {
+  animation: zoom-in-zoom-out 5s ease;
+  margin-top: 2%;
+}
+@keyframes zoom-in-zoom-out {
+  0% {
+    scale: 50%;
+  }
+  50% {
+    scale: 100%;
+  }
+}
+
+.title{
+font-size: 6vmax; 
+font-weight: 800;
+line-height: 100%;
+margin-top: 3%;
+position: absolute;
+padding-left: 3%;
+margin-right: 9%;
+-webkit-text-stroke-width: 1px;
+-webkit-text-stroke-color: white;
+padding-bottom: 10%;
+}
+
+@media (max-width: 600px) {
+  .body {
+    max-width: 100% !important;
+    margin: 0 1rem !important;
+    height: auto !important;
+  }
+
+  .margin {
+    margin: 1% 3% !important;
+    display: flex;
+    flex-direction: column !important;
+    align-items: center;
+  }
+
+  .div1, .text-container {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    float: none !important;
+  }
+
+  .text-container {
+    font-size: 1rem !important;
+    padding: 0.8rem !important;
+    box-shadow: 0 2px 10px rgba(102, 126, 234, 0.2);
+  }
+
+  .title {
+    font-size: 5vw !important;
+    padding-left: 0.5rem !important;
+    position: relative !important;
+    margin: 1rem 0 !important;
+  }
+
+  ul {
+    flex-direction: column !important;
+  }
+
+  li {
+    width: 100% !important;
+  }
+
+  li a, .dropbtn {
+    padding: 8px !important;
+    text-align: center;
+    display: block;
+  }
+
+  .map {
+    width: 90% !important;
+    height: 200px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .portfolio-container {
+    width: 100% !important;
+    margin-top: 2rem !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  
+  .margin {
+    margin: 4% 8%;
+  }
+
+  .div1, .text-container {
+    flex: 1 1 45%;
+  }
+
+  .title {
+    font-size: 8vmax;
+    padding-left: 1rem;
+  }
+
+  .map {
+    width: 80%;
+    height: 300px;
+  }
+
+  .icon-links {
+    margin: 1rem 8%;
+  }
+}
+
+</style>
+<body>
+
+<ul>
+    <li><a href="VRA 109.html">Home</a></li>
+    <li><a href="map.html">Map</a></li>
+
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Foods</a>
+    <div class="dropdown-content">
+  <a href="Teochew Chendul.html">Penang Road Famous Teochew Chendul</a>
+  <a href="San Guo Cafe.html">Hokkien Mee San Guo cafe</a>
+  <a href="Green Tomyum.html">Ghee Lian Green Tomyum</a>
+  <a href="nyonya kueh.html">Moh Teng Pheow Nyonya Koay</a>
+  <a href="New world park.html">New World Park</a>
+
+<li class="dropdown">
+  <a href="javascript:void(0)" class="dropbtn">Culturals</a>
+  <div class="dropdown-content">
+  <a href="cheach kongsi.html">Cheah Kongsi </a>
+  <a href="Tan Jetty.html">Tan Jetty</a>
+  <a href="Lebuh Acheh Mosque.html">Lebuh Aceh Mosque</a>
+  <a href="PERANAKAN MANSION.html">Penang Peranakan Mansion</a>
+  <a href="logan memorial.html">Logan Memorial</a>
+    <a href="ng fook thong.html">Ng Fook Thong Temple</a>
+
+<li class="dropdown">
+<a href="javascript:void(0)" class="dropbtn">Others</a>
+<div class="dropdown-content">
+<a href="CTY.html">Chew Thean Yeang Aquarium</a>
+<a href="hinbusdepot.html">Hin Bus Depot</a>
+
+    </div>
+  </li>
+</ul>
+
+</body>
+<body>
+
+    <div class="margin">
+    <div class="div1"><img class="bgimage" src="https://i.postimg.cc/HnyLJxNc/logan-memorial1.png"></div>
+   <b><div class="title">Logan Memorial</div></b>
+
+<br><br><br><br><br>
+<div class="text_desc text-container" style="float: right;">
+    <p1>This Gothic-style memorial was erected in honor of James Richardson Logan, a Scottish lawyer who became a 
+        fierce advocate for the people of the Straits Settlements during the British colonial era.
+    </div>
+   
+    <div class="portfolio-container">
+        <div class="loading">
+            <div class="loading-spinner"></div>
+        </div>
+        <div class="slideshow">
+            <div class="progress-bar"></div>
+            
+            <div class="slide active" data-index="0">
+                <img src="https://i.postimg.cc/HnyLJxNc/logan-memorial1.png" class="slide-img">
+            </div>
+            
+            <div class="slide active" data-index="1">
+                <img src="https://i.postimg.cc/fWJBb9w2/logan-memorial2.png" class="slide-img">
+            </div>
+    
+            <div class="slide active" data-index="2">
+                <img src="https://i.postimg.cc/P5zM7b4x/logan-memorial3.jpg" class="slide-img">
+            </div>
+            <div class="controls">
+                <div class="btn prev">❮</div>
+                <div class="btn next">❯</div>
+            </div>
+        </div>
+        
+        <div class="thumbnails">
+            <div class="thumbnail active" data-index="0">
+                <img src="https://i.postimg.cc/HnyLJxNc/logan-memorial1.png">
+            </div>
+            <div class="thumbnail" data-index="1">
+                <img src="https://i.postimg.cc/fWJBb9w2/logan-memorial2.png" >
+            </div>
+            <div class="thumbnail" data-index="2">
+                <img src="https://i.postimg.cc/P5zM7b4x/logan-memorial3.jpg" >
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+<iframe class="map z_i_n_o" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3971.9730627570166!2d100.33724631044018!3d5.421063394535505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x304ac370f5249679%3A0x2a0f862b5dd558b!2sLogan%20Memorial!5e0!3m2!1sen!2smy!4v1751048924859!5m2!1sen!2smy" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="text_desc1 text-container1">
+    <p1>Fun facts of Logan Memorial:
+      <br>1. The memorial was built in 1873 on the premise of the Penang Supreme Court but was moved across the street in 2007.
+      <br>2. James Richardson Logan remains buried in the Protestant cemetery together with other Europeans like Francis Light who founded Penang as an important trading place and built the city up.
+      <br>3. This monument was constructed by the public as a memorial to James Richardson Logan
+
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const allImages = document.querySelectorAll('img');
+            let loadedImages = 0;
+            
+            allImages.forEach(img => {
+                if (img.complete) {
+                    imageLoaded();
+                } else {
+                    img.addEventListener('load', imageLoaded);
+                    img.addEventListener('error', imageLoaded);
+                }
+            });
+            
+            function imageLoaded() {
+                loadedImages++;
+                if (loadedImages === allImages.length) {
+                    setTimeout(() => {
+                        document.querySelector('.loading').classList.add('hidden');
+                        startSlideshow();
+                    }, 500);
+                }
+            }
+            function startSlideshow() {
+                const slides = document.querySelectorAll('.slide');
+                const thumbnails = document.querySelectorAll('.thumbnail');
+                const prevBtn = document.querySelector('.prev');
+                const nextBtn = document.querySelector('.next');
+                const progressBar = document.querySelector('.progress-bar');
+                
+                let currentIndex = 0;
+                let interval;
+                const intervalTime = 3000;
+                
+                function startProgressBar() {
+                    progressBar.style.width = '0%';
+                    progressBar.style.transition = `width ${intervalTime}ms linear`;
+                    setTimeout(() => {
+                        progressBar.style.width = '100%';
+                    }, 50);
+                }
+                
+                function resetProgressBar() {
+                    progressBar.style.width = '0%';
+                    progressBar.style.transition = 'none';
+                }
+                
+                function setActiveSlide(index, shouldScroll = false) {
+                    resetProgressBar();
+                    
+                    slides.forEach(slide => slide.classList.remove('active'));
+                    thumbnails.forEach(thumb => thumb.classList.remove('active'));
+                    
+                    slides[index].classList.add('active');
+                    thumbnails[index].classList.add('active');
+                    
+               if (shouldScroll) {
+        thumbnails[index].scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'center'
+        });
+    }
+                    startProgressBar();
+                    
+                    currentIndex = index;
+                    
+                    clearInterval(interval);
+                    interval = setInterval(nextSlide, intervalTime);
+                }
+                
+                function nextSlide() {
+                    let newIndex = currentIndex + 1;
+                    if (newIndex >= slides.length) {
+                        newIndex = 0;
+                    }
+                    setActiveSlide(newIndex, false);
+                }
+                
+                function prevSlide() {
+                    let newIndex = currentIndex - 1;
+                    if (newIndex < 0) {
+                        newIndex = slides.length - 1;
+                    }
+                    setActiveSlide(newIndex);
+                }
+                
+                thumbnails.forEach(thumbnail => {
+                    thumbnail.addEventListener('click', () => {
+                        const index = parseInt(thumbnail.dataset.index);
+                        setActiveSlide(index,true);
+                    });
+                });
+                
+                prevBtn.addEventListener('click', prevSlide);
+                nextBtn.addEventListener('click', nextSlide);
+                
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') {
+                        prevSlide();
+                    } else if (e.key === 'ArrowRight') {
+                        nextSlide();
+                    }
+                });
+                
+                const slideshowContainer = document.querySelector('.slideshow');
+                slideshowContainer.addEventListener('mouseenter', () => {
+                    clearInterval(interval);
+                });
+                
+                slideshowContainer.addEventListener('mouseleave', () => {
+                    interval = setInterval(nextSlide, intervalTime);
+                    progressBar.style.transition = `width ${intervalTime}ms linear`;
+                    progressBar.style.width = '100%';
+                });
+                
+                let touchStartX = 0;
+                let touchEndX = 0;
+                
+                slideshowContainer.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, false);
+                
+                slideshowContainer.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, false);
+                
+                function handleSwipe() {
+                    if (touchEndX < touchStartX - 50) {
+                        nextSlide();
+                    } else if (touchEndX > touchStartX + 50) {
+                        prevSlide();
+                    }
+                }
+                
+                startProgressBar();
+                interval = setInterval(nextSlide, intervalTime);
+                
+                const badges = document.querySelectorAll('.badge');
+                badges.forEach(badge => {
+                    badge.addEventListener('mouseenter', () => {
+                        badge.style.transform = 'scale(1.1)';
+                        badge.style.backgroundColor = '#e67e00';
+                    });
+                    
+                    badge.addEventListener('mouseleave', () => {
+                        badge.style.transform = 'scale(1)';
+                        badge.style.backgroundColor = '';
+                    });
+                });
+            }
+        });
+        $(document).ready(function(){
+  $('input[type=button]').click(function(){
+    $('.active').removeClass('dropdown-content');
+    $(this).addClass('dropdown-content');
+  });
+});
+</script>
+</body>
+<footer>
+    <div class="container">
+        <div class="container1">
+       Sunday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :All Day<br>
+      Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :All Day<br>
+      Tuesday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : All Day <br>
+      Wednesday :All Day<br>
+      Thursday&nbsp;&nbsp;&nbsp;&nbsp;:All Day<br>
+      Friday  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :All Day<br>
+      Saturday&nbsp;&nbsp;&nbsp;&nbsp; :All Day<br>
+    </div>
+
+      <div class="container2">
+        Georgetown, 10200 George Town, Penang<br>
+    </div>
+    </div>
+</footer>
+</html>
